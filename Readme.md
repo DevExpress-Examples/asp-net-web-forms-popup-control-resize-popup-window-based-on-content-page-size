@@ -2,7 +2,7 @@
 *Files to look at*:
 
 * **[Default.aspx](./CS/E2571/Default.aspx) (VB: [Default.aspx](./VB/E2571/Default.aspx))**
-* [Default.aspx.cs](./CS/E2571/Default.aspx.cs) (VB: [Default.aspx](./VB/E2571/Default.aspx))
+* [Default.aspx.cs](./CS/E2571/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/E2571/Default.aspx.vb))
 <!-- default file list end -->
 # ASPxPopupControl - How to resize the popup according to the size of its content
 
