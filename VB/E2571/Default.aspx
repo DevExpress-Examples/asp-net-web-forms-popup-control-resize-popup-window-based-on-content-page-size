@@ -15,7 +15,7 @@
             });
         }
         function onContentLoaded(e, popup) {
-            var array = calculateSize(popup, popup.GetContentIFrame(), popup.GetContentIFrameWindow().document); // !!!!! MODIFIED LINE
+            var array = calculateSize(popup, popup.GetContentIFrame(), popup.GetContentIFrameWindow().document);
             popup.SetSize(array[0], array[1]);
         }
         function calculateSize(popup, popupiframe, contentDocument) {
