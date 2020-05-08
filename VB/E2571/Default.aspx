@@ -8,20 +8,17 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript">
-        var iframeElement;
-        function OnPopupInit(s, e) {
-            iframeElement = popup.GetContentIFrame();
-            loadingPanel.ShowInElement(iframeElement);
-            ASPxClientUtils.AttachEventToElement(iframeElement, 'load', OnContentLoaded);
+        function onPopupInit(s, e) {
+            var iframeElement = s.GetContentIFrame();
+            ASPxClientUtils.AttachEventToElement(iframeElement, 'load', function (event) {
+                onContentLoaded(event, s)
+            });
         }
-        function OnContentLoaded(e) {
-            loadingPanel.Hide();
-            var frame = GetFrameOfIFrame(iframeElement);
-            var doc = frame.document;
-            var array = CalculateSize(iframeElement, doc);
+        function onContentLoaded(e, popup) {
+            var array = calculateSize(popup, popup.GetContentIFrame(), popup.GetContentIFrameWindow().document); // !!!!! MODIFIED LINE
             popup.SetSize(array[0], array[1]);
         }
-        function CalculateSize(popupiframe, contentDocument) {
+        function calculateSize(popup, popupiframe, contentDocument) {
             var windowElement = popup.GetWindowElement(-1);
             var scrollX = contentDocument.documentElement.scrollWidth;
             var scrollY = contentDocument.documentElement.scrollHeight;
@@ -36,26 +33,13 @@
             var array = [width, height];
             return array;
         }
-        function GetFrameOfIFrame(iframeElement) {
-            var name = iframeElement.contentWindow.name;
-            var frameIndex = this.internalGetFrameByWindowName(name);
-            return window.frames[frameIndex];
-        }
-        function internalGetFrameByWindowName(name) {
-            var count = window.top.frames.length;
-            for (var i = 0; i < count; i++) {
-                if (window.top.frames[i].window.name === name)
-                    return i;
-            }
-            return -1;
-        }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" ContentUrl="~/Content.aspx" ClientInstanceName="popup"
             ShowOnPageLoad="True" CloseAction="CloseButton">
-            <ClientSideEvents Init="OnPopupInit" />
+            <ClientSideEvents Init="onPopupInit" />
         </dx:ASPxPopupControl>
         <dx:ASPxLoadingPanel ID="ASPxLoadingPanel1" ClientInstanceName="loadingPanel" runat="server"></dx:ASPxLoadingPanel>
     </form>
