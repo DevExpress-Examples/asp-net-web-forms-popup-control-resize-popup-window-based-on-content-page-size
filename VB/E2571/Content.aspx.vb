@@ -7,9 +7,9 @@ Imports System.Web.UI
 Imports System.Web.UI.WebControls
 
 Partial Public Class Content
-    Inherits System.Web.UI.Page
+	Inherits System.Web.UI.Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
-        Thread.Sleep(1500)
-    End Sub
+	Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
+		Thread.Sleep(1500)
+	End Sub
 End Class
