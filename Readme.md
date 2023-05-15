@@ -1,22 +1,50 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128555261/17.2.4%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E2571)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
-
-* **[Default.aspx](./CS/E2571/Default.aspx) (VB: [Default.aspx](./VB/E2571/Default.aspx))**
-* [Default.aspx.cs](./CS/E2571/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/E2571/Default.aspx.vb))
-<!-- default file list end -->
-# ASPxPopupControl - How to resize the popup according to the size of its content
+# Popup Control for ASP.NET Web Forms - How to resize the pop-up window based on to the content page size
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/e2571/)**
 <!-- run online end -->
 
+This example demonstrates how to change the size of a pop-up window based on the size of the content page within the control's iframe.
 
-<p>By default, the <a href="https://documentation.devexpress.com/AspNet/DevExpress.Web.ASPxPopupControl.class">ASPxPopupControl</a> control has a fixed size. However, there are a lot of tasks that require resizing the control according to the size of its content page.<br>The main problem in this situation is to "catch" the moment when this page and all its controls are loaded and calculate their sizes. In this sample, the problem is solved in the following way:<br>1) The ASPxPopupControl control has the client-side event <strong>Init</strong>, whose <strong>OnPopupInit</strong> event handler is used to get an iframe element of the popup control and then attach the <strong>OnContentLoaded</strong> event handler to the <strong>Load</strong> event of this element.<br>2) The <strong>OnContentLoaded</strong> event handler is used to calculate width and height of the content page which is placed inside the iframe element and set the size of the ASPxPopupControl control in accordance with the calculated width and height.</p>
+![Resize the pop-up window based on the content](changePopupSize.png)
 
-<br/>
+## Overview
 
+Handle the popup control's client-side `Init` event. In the handler, call the control's [GetContentIFrame](https://docs.devexpress.com/AspNet/js-ASPxClientPopupControlBase.GetContentIFrame) method to get the control's iframe and attach the `OnContentLoaded` event handler to the iframe's `Load` event.
 
+```js
+function onPopupInit(s, e) {
+    var iframeElement = s.GetContentIFrame();
+    ASPxClientUtils.AttachEventToElement(iframeElement, 'load', function (event) {
+        onContentLoaded(event, s)
+    });
+}
+```
+
+In the `OnContentLoaded` event handler, calculate the size of the content page within the iframe and specify the pop-up window's size based on a calculation.
+
+```js
+function onContentLoaded(e, popup) {
+    var array = calculateSize(popup, popup.GetContentIFrame(), popup.GetContentIFrameWindow().document);
+    popup.SetSize(array[0], array[1]);
+}
+function calculateSize(popup, popupiframe, contentDocument) {
+    var windowElement = popup.GetWindowElement(-1);
+    var scrollX = contentDocument.documentElement.scrollWidth;
+    var scrollY = contentDocument.documentElement.scrollHeight;
+    var offsetX = windowElement.offsetWidth - popupiframe.offsetWidth;
+    var offsetY = windowElement.offsetHeight - popupiframe.offsetHeight;
+    var width = scrollX + offsetX;
+    var height = scrollY + offsetY;
+    if (window.navigator.userAgent.indexOf("Edge") > -1) {
+        width += 10;
+        height += 10;
+    }
+    var array = [width, height];
+    return array;
+}
+```
+
+## Files to Review
+
+* [Default.aspx](./CS/E2571/Default.aspx) (VB: [Default.aspx](./VB/E2571/Default.aspx))
+* [Content.aspx](./CS/E2571/Content.aspx) (VB: [Content.aspx](./VB/E2571/Content.aspx))
