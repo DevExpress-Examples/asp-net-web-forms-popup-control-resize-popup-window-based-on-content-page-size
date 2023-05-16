@@ -20,7 +20,7 @@ function onPopupInit(s, e) {
 }
 ```
 
-In the `OnContentLoaded` event handler, calculate the size of the content page within the iframe and specify the pop-up window's size based on a calculation.
+In the `OnContentLoaded` event handler, calculate the size of the content page within the iframe and specify the pop-up window's size based on this calculation.
 
 ```js
 function onContentLoaded(e, popup) {
