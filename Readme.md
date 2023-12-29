@@ -4,9 +4,6 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 # Popup Control for ASP.NET Web Forms - How to resize the pop-up window based on to the content page size
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/128555261/)**
-<!-- run online end -->
 
 This example demonstrates how to change the size of a pop-up window based on the size of the content page within the control's iframe.
 
