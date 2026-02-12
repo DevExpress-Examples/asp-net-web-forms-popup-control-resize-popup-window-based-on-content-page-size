@@ -52,7 +52,7 @@ function calculateSize(popup, popupiframe, contentDocument) {
 * [Default.aspx](./CS/E2571/Default.aspx) (VB: [Default.aspx](./VB/E2571/Default.aspx))
 * [Content.aspx](./CS/E2571/Content.aspx) (VB: [Content.aspx](./VB/E2571/Content.aspx))
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-web-forms-popup-control-resize-popup-window-based-on-content-page-size&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-web-forms-popup-control-resize-popup-window-based-on-content-page-size&~~~was_helpful=no)
 
